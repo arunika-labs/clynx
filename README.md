@@ -3,15 +3,15 @@
 **SLAM** (Super Link Attention Mechanism) + **Mulion** optimizer, in pure JAX.
 
 ```
-pip install git+https://github.com/<you>/clynx.git
+pip install git+https://github.com/arunika-labs/clynx.git
 ```
 
 GPU/TPU variants:
 
 ```
-pip install "clynx[cuda12] @ git+https://github.com/<you>/clynx.git"
-pip install "clynx[cuda13] @ git+https://github.com/<you>/clynx.git"
-pip install "clynx[tpu]    @ git+https://github.com/<you>/clynx.git"
+pip install "clynx[cuda12] @ git+https://github.com/arunika-labs/clynx.git"
+pip install "clynx[cuda13] @ git+https://github.com/arunika-labs/clynx.git"
+pip install "clynx[tpu]    @ git+https://github.com/arunika-labs/clynx.git"
 ```
 
 ---
