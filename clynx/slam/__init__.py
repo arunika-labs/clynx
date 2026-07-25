@@ -8,10 +8,15 @@ One fixed, established standard (see project notes) — sigmoid attention,
 with clynx.optim.mulion. No activation/norm/tau_learnable switches.
 
 Modules (flax.linen-style, stateless):
-    Module          Base class
+    Module          Base class — see clynx.slam.scope for its full API:
+                    init, apply, init_with_output, sow, is_initializing,
+                    bind, copy, tabulate
+    compact         Decorator enabling inline submodule declaration
+    pack            Optional decorator for PyTorch/Equinox-style stateful calling
     Linear          Dense projection, symlog-compressed backward
     Embed           Token embedding lookup, symlog-compressed backward
-    LinkAttention   sigmoid(QKᵀ / τ) · V, τ init=d_k, learnable per head
+    LinkAttention   sigmoid(QKᵀ / τ) · V, τ init=d_k, learnable per head;
+                    sows its attention weights under "intermediates"
     FeedForward     Two-layer MLP
     Dropout         Inverted dropout (pass deterministic=True at eval)
 
@@ -37,11 +42,18 @@ Usage
 
 from clynx.slam.modules import (
     Module,
+    compact,
+    pack,
+    Dense,
     Linear,
     Embed,
     LinkAttention,
     FeedForward,
     Dropout,
+    LayerNorm,
+    TransformerBlock,
+    Sequential,
+    Stack,
 )
 
 from clynx.slam import functional
@@ -56,11 +68,18 @@ from clynx.slam.functional import (
 __all__ = [
     # Modules
     "Module",
+    "compact",
+    "pack",
+    "Dense",
     "Linear",
     "Embed",
     "LinkAttention",
     "FeedForward",
     "Dropout",
+    "LayerNorm",
+    "TransformerBlock",
+    "Sequential",
+    "Stack",
     # Submodule
     "functional",
     # Functional shortcuts
