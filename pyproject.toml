@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=72.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clynx"
+version = "0.1.0"
+description = "SLAM (Super Link Attention Mechanism) — sigmoid attention + Mulion optimizer for JAX"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.12"
+
+dependencies = [
+    "jax==0.11.0",
+    "jaxlib==0.11.0",
+    "safetensors==0.8.0",
+]
+
+[project.optional-dependencies]
+# GPU variants — user installs one of these manually per their hardware:
+#   pip install "clynx[cuda12]"
+#   pip install "clynx[cuda13]"
+cuda12 = ["jax[cuda12]==0.11.0"]
+cuda13 = ["jax[cuda13]==0.11.0"]
+tpu    = ["jax[tpu]==0.11.0"]
+
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.4",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["clynx*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
